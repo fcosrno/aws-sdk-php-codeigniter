@@ -45,13 +45,13 @@ class Aws_sdk{
 		try{
 			$this->createBucket(array('Bucket' => $params['Bucket']));
 		}catch (Exception $e){
-			$error = "Something went wrong creating bucket for your file.\n".$e;
+			throw new Exception("Something went wrong creating bucket for your file.\n".$e);
 		}
 		// Poll the bucket until it is accessible
 		try{
 			$this->waitUntil('BucketExists', array('Bucket' => $params['Bucket']));
 		}catch (Exception $e){
-			$error = "Something went wrong waiting for the bucket for your file.\n".$e;
+			throw new Exception("Something went wrong waiting for the bucket for your file.\n".$e);
 		}
 		// Upload an object
 		$file_key = $params['Prefix'].'/'.$params['Key'];
@@ -68,7 +68,7 @@ class Aws_sdk{
 			    'ContentType' => $mimetype
 			))->toArray();
 		}catch (Exception $e){
-			$error = "Something went wrong saving your file.\n".$e;
+			throw new Exception("Something went wrong saving your file.\n".$e);
 		}
 
 		// We can poll the object until it is accessible
@@ -78,10 +78,9 @@ class Aws_sdk{
 			    'Key'    => $file_key
 			));
 		}catch (Exception $e){
-			$error = "Something went wrong polling your file.\n".$e;
+			throw new Exception("Something went wrong polling your file.\n".$e);
 		}
 		// Return result
-		if($error)throw new Exception($error);
-		else return $aws_object['ObjectURL'];
+		return $aws_object['ObjectURL'];
    }
 }
