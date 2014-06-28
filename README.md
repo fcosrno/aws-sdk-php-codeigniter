@@ -1,6 +1,6 @@
 # AWS Library for Codeigniter 2
 
-A simple Codeigniter library for including the AWS SDK for PHP. Plus, a few helper functions.
+A simple Codeigniter 2.x.x library for including the latest AWS SDK for PHP (currently 2.x.x). Plus, a few helper functions.
 
 ## Wait, why use a CodeIgniter library?
 
