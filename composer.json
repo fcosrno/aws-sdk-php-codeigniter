@@ -1,0 +1,17 @@
+{
+    "require": {
+        "aws/aws-sdk-php": "2.*",
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+	"autoload": {
+		"psr-4": {
+			"Aws\\": "vendor/aws/src/"
+		}
+	},
+    "scripts": {
+        "test": "phpunit"
+    }
+}
